@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "troll",
-  description: "an app for monitoring pesky bridge txs",
+  title: {
+    template: "%s | Troll",
+    default: "Troll - Blob Transaction Explorer",
+  },
+  description: "Monitor and explore bridge transactions",
 };
 
 export default function RootLayout({
@@ -13,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

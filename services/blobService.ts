@@ -1,10 +1,10 @@
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 
 class BlobService {
   private provider: ethers.JsonRpcProvider;
 
   constructor() {
-    this.provider = new ethers.JsonRpcProvider('https://rpc.ankr.com/eth');
+    this.provider = new ethers.JsonRpcProvider("https://rpc.ankr.com/eth");
   }
 
   async validateBlobTransaction(txHash: string): Promise<{
@@ -14,18 +14,22 @@ class BlobService {
   }> {
     try {
       const tx = await this.provider.getTransaction(txHash);
-      if (!tx) return {
-        isValidTransaction: false,
-        hasBlobData: false,
-        blobCount: 0
-      };
+      if (!tx)
+        return {
+          isValidTransaction: false,
+          hasBlobData: false,
+          blobCount: 0,
+        };
+
+      const blobHashes = tx.blobVersionedHashes || [];
 
       return {
         isValidTransaction: true,
-        hasBlobData: Boolean(tx.blobVersionedHashes?.length > 0),
-        blobCount: tx.blobVersionedHashes?.length || 0
+        hasBlobData: blobHashes.length > 0,
+        blobCount: blobHashes.length,
       };
-    } catch (error) {
+    } catch (err) {
+      const error = err as Error;
       throw new Error(`Invalid transaction hash: ${error.message}`);
     }
   }
@@ -33,12 +37,13 @@ class BlobService {
   async getBlobTransactionDetails(txHash: string) {
     try {
       const tx = await this.provider.getTransaction(txHash);
-      if (!tx) throw new Error('Transaction not found');
+      if (!tx) throw new Error("Transaction not found");
 
       const receipt = await this.provider.getTransactionReceipt(txHash);
-      if (!receipt) throw new Error('Receipt not found');
+      if (!receipt) throw new Error("Receipt not found");
 
-      const blockData = await this.provider.getBlock(tx.blockNumber);
+      const blockNumber = tx.blockNumber || 0;
+      const blockData = await this.provider.getBlock(blockNumber);
 
       return {
         blockNumber: tx.blockNumber,
@@ -47,13 +52,15 @@ class BlobService {
         blobGasPrice: receipt.blobGasPrice,
         maxFeePerBlobGas: tx.maxFeePerBlobGas,
         blobVersionedHashes: tx.blobVersionedHashes || [],
-        totalBlobCost: receipt.blobGasUsed && receipt.blobGasPrice 
-          ? (receipt.blobGasUsed * receipt.blobGasPrice).toString()
-          : '0',
+        totalBlobCost:
+          receipt.blobGasUsed && receipt.blobGasPrice
+            ? (receipt.blobGasUsed * receipt.blobGasPrice).toString()
+            : "0",
         from: tx.from,
-        to: tx.to
+        to: tx.to,
       };
-    } catch (error) {
+    } catch (err) {
+      const error = err as Error;
       throw new Error(`Failed to fetch blob data: ${error.message}`);
     }
   }

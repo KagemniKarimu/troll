@@ -1,16 +1,18 @@
 import { TrollUI } from "@/app/page";
+import { Metadata } from "next";
 
-interface BlobPageProps {
-  params: {
-    hash: string;
+type Props = {
+  params: Promise<{ hash: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const hash = (await params).hash;
+
+  return {
+    title: `${hash} troll`,
   };
 }
 
-export default async function BlobPage({ params }: BlobPageProps) {
-  // Validate the hash parameter if needed
-  if (!params.hash || typeof params.hash !== "string") {
-    throw new Error("Invalid hash parameter");
-  }
-
-  return <TrollUI initialHash={params.hash} />;
+export default async function Page({ params }: Props) {
+  return <TrollUI initialHash={(await params).hash} />;
 }
