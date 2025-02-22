@@ -1,6 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![](/public/troll_gh_banner.png)
 
-## Getting Started
+![GitHub License](https://img.shields.io/github/license/kagemnikarimu/troll)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Ftroll-snowy.vercel.app)
+![GitHub branch status](https://img.shields.io/github/checks-status/kagemnikarimu/troll/main)
+![GitHub Created At](https://img.shields.io/github/created-at/kagemnikarimu/troll)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/kagemnikarimu/troll)
+![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)
+
+## Overview
+
+`troll` is an aspirational web app for monitoring bridging interactions as they're implemented on the `t1` protocol. 
+
+As of right now, troll works only by viewing blobs on Ethereum mainnet. 
+
+
+![Screenshot](/public/UI_Screenshot1.png)
+
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
+
+## Design Considerations
+
+
+
+## Implementation Roadmap
+
+### Features 🎊
+* [ ] Ethereum `mainnet` blob viewing
+
+### To Do 📋
+* [ ] Track `t1` deposits
+* [ ] Support for More Networks (`sepolia`)
+* [ ] RPC Provider Fallbacks
+
+
+## Live Site ✨
+
+The site is currently deployed using vercel and can be seen at the following url:
+
+> https://troll-snowy.vercel.app
+
+Pushes to this repository result in new builds.
+
+## Do It Yourself 🔨
 
 First, run the development server:
 
@@ -16,21 +71,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
