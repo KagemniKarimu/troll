@@ -22,7 +22,7 @@ To get a better understanding of why this app was created, it's best to know how
 - Executors post the new state and consensus proofs to Ethereum's Canonical Bridge contract
 - Transaction data is posted to **Ethereum Blob DA, serving as the single source of truth**
 
-That's where `troll` comes in. `troll` works by serving and interpreting blob data (and, as necessary, smart contract txs) in order to determine the state of a bridging transaction. It can be visiualized as the following:
+That's where `troll` comes in. `troll` works by serving and interpreting blob data (and, as necessary, smart contract txs) in order to determine the state of a bridging transaction. It can be visualized as the following:
 
 ```mermaid
 flowchart LR
